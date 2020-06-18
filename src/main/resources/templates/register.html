@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/login/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="/login/css/style.css">
+</head>
+<body>
+<div class="main">
+    <section class="signup">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-form">
+                    <h2 class="form-title">Sign up</h2>
+                    <form th:action="@{/sign-up}" th:object="${accountCreateDto}" method="post" class="register-form" id="register-form">
+                        <div class="form-group">
+                            <label><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text"  placeholder="Your First Name" th:field="*{firstName}"/>
+                            <span th:each="error : ${#fields.errors('firstName')}" th:text="${error}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" placeholder="Your Last Name" th:field="*{lastName}"/>
+                            <span th:each="error : ${#fields.errors('lastName')}" th:text="${error}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><i class="zmdi zmdi-email"></i></label>
+                            <input type="email" name="email" th:field="*{email}" id="email" placeholder="Your Email"/>
+                            <span th:each="error : ${#fields.errors('email')}" th:text="${error}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password" name="pass" id="pass" th:field="*{password}" placeholder="Password"/>
+                            <span th:each="error : ${#fields.errors('password')}" th:text="${error}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="re_pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                            <input type="password" name="re_pass" th:field="*{repeatPassword}" id="re_pass" placeholder="Repeat your password"/>
+                            <span th:each="error : ${#fields.errors('repeatPassword')}" th:text="${error}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" placeholder="Your City" th:field="*{city}"/>
+                            <span th:each="error : ${#fields.errors('city')}" th:text="${error}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" placeholder="Your State" th:field="*{state}"/>
+                            <span th:each="error : ${#fields.errors('state')}" th:text="${error}"></span>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" placeholder="Zip" th:field="*{zip}"/>
+                            <span th:each="error : ${#fields.errors('zip')}" th:text="${error}"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                            <label for="agree-term" class="label-agree-term"><span><span></span></span>
+                                I agree all statements in
+                                <a href="#" class="term-service">Terms of service</a>
+                            </label>
+                        </div>
+                        <div class="form-group form-button">
+                            <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="signup-image">
+                    <figure><img src="/login/images/signup-image.jpg" alt="sing up image"></figure>
+                    <a href="#" class="signup-image-link">I am already member</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="/login/vendor/jquery/jquery.min.js"></script>
+<script src="/login/js/main.js"></script>
+</body>
+</html>
