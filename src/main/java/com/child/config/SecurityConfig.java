@@ -34,11 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasAnyRole("ADMIN")
                 .antMatchers("/build/**", "/dist/**",
                         "/docs/**", "/plugins/**",
-                        "/login/**","/","/sign-up","/verify-code").permitAll()
+                        "/login/**","/","/sign-up","/verify-code","/index","/home/**","/contact",
+                        "/about","/gallery").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login")
-                .defaultSuccessUrl("/").and().logout();
+                .formLogin().loginPage("/login").and().logout();
+//                .defaultSuccessUrl("/")
 
     }
 

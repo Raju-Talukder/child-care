@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/")
 public class ApplicationController {
 
     @Autowired
@@ -54,5 +53,25 @@ public class ApplicationController {
         }
         accountService.verifyCode(codeVerifyDto);
         return "redirect:/login";
+    }
+
+    @GetMapping("/")
+    public String home(Model model){
+        return "home/index";
+    }
+
+    @GetMapping("/contact")
+    public String contact(){
+        return "home/contact";
+    }
+
+    @GetMapping("/about")
+    public String about(){
+        return "home/about";
+    }
+
+    @GetMapping("/gallery")
+    public String gallery(){
+        return "home/gallery";
     }
 }
