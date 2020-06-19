@@ -11,8 +11,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ApplicationController {
@@ -46,7 +47,7 @@ public class ApplicationController {
     }
 
     @PostMapping("verify-code")
-    public String verifyCodeAction(Model model, @Valid CodeVerifyDto codeVerifyDto, BindingResult result) {
+    public String verifyCodeAction(Model model,@Valid  CodeVerifyDto codeVerifyDto, BindingResult result) {
         if(result.hasErrors()) {
             return "verify-code";
         }

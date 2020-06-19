@@ -1,7 +1,10 @@
 package com.child.principle;
 
+import com.child.mail.MailService;
 import com.child.model.Account;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,49 +14,28 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class UserPrinciple implements UserDetails {
-    private Long id;
+public class UserPrinciple extends Account implements UserDetails {
+    Logger logger = LoggerFactory.getLogger(UserPrinciple.class);
 
-    private String username;
-    @JsonIgnore
-    private String password;
-    private Collection<? extends GrantedAuthority> authorities;
-
-    public UserPrinciple() {
-        super();
-    }
-
-    public UserPrinciple(Long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.authorities = authorities;
-    }
-
-    public static UserDetails create(Account m){
-        List<GrantedAuthority> authorities = m.getRoles().stream().map(role ->
-                new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
-        return new UserPrinciple(
-                m.getId(),
-                m.getEmail(),
-                m.getPassword(),
-                authorities
-        );
+    public UserPrinciple(Account account) {
+        super(account);
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .collect(Collectors.toList());
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return super.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return username;
+        return super.getEmail();
     }
 
     @Override
@@ -76,18 +58,4 @@ public class UserPrinciple implements UserDetails {
         return true;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        UserPrinciple that = (UserPrinciple) o;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
