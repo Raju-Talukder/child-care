@@ -26,4 +26,9 @@ public class UserController {
     public String dailyReport(){
         return "user/dailyReport";
     }
+
+    @GetMapping("/profile")
+    public String getProfile(){
+        return "user/profile";
+    }
 }
