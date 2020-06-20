@@ -12,6 +12,7 @@ import java.util.Optional;
 public class RoleDaoImp implements RoleDao{
     @Autowired
     private RoleRepository roleRepository;
+
     @Override
     public Optional<Role> findById(long id) {
         return roleRepository.findById(id);

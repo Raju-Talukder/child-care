@@ -3,13 +3,13 @@ package com.child.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "user")
-public class Account {
+public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,22 +23,12 @@ public class Account {
     private String zip;
     private boolean isActive;
 
-    public Account(Account account) {
-        this.email = account.getEmail();
-        this.password = account.getPassword();
-        this.roles = account.getRoles();
-    }
-
-    public Account() {
-    }
-
-
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role",joinColumns = {
             @JoinColumn(name = "user_id",referencedColumnName = "id")
     },inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id"))
-    private Collection<Role> roles;
+    private Set<Role> roles;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "account",cascade = CascadeType.ALL)
@@ -92,7 +82,7 @@ public class Account {
         isActive = active;
     }
 
-    public Collection<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
@@ -132,7 +122,7 @@ public class Account {
         this.verifyAccounts = verifyAccounts;
     }
 
-    public Collection<Role> addRole(Role role){
+    public Set<Role> addRole(Role role){
         if (roles==null)
             roles=new HashSet<Role>();
         roles.add(role);
