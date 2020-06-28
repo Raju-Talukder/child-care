@@ -18,10 +18,18 @@ public class Account implements Serializable {
     @Column(unique = true)
     private String email;
     private String password;
-    private String city;
-    private String state;
-    private String zip;
     private boolean isActive;
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_address",joinColumns = {
+            @JoinColumn(name = "user_id",referencedColumnName = "id")
+    },inverseJoinColumns = @JoinColumn(name = "address_id",referencedColumnName = "id"))
+    private Set<Address> address;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "account",cascade = CascadeType.ALL)
+    private Set<Child> child;
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
@@ -86,30 +94,6 @@ public class Account implements Serializable {
         return roles;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getZip() {
-        return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
-
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
@@ -120,6 +104,22 @@ public class Account implements Serializable {
 
     public void setVerifyAccounts(Set<VerifyAccount> verifyAccounts) {
         this.verifyAccounts = verifyAccounts;
+    }
+
+    public Set<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(Set<Address> address) {
+        this.address = address;
+    }
+
+    public Set<Child> getChild() {
+        return child;
+    }
+
+    public void setChild(Set<Child> child) {
+        this.child = child;
     }
 
     public Set<Role> addRole(Role role){

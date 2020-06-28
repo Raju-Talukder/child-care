@@ -17,29 +17,14 @@ public class AdminController {
         return "admin/empList";
     }
 
-    @GetMapping("/list/child")
-    public String getChildList(){
-        return "admin/childList";
-    }
-
     @GetMapping("/list/user")
     public String getUserList(){
         return "admin/userList";
     }
 
-    @GetMapping("/request/child")
-    public String getChildAccountRequest(){
-        return "admin/childAccountRequest";
-    }
-
     @GetMapping("/request/user")
     public String getUserAccountRequest(){
         return "admin/userAccountRequest";
-    }
-
-    @GetMapping("/add/child")
-    public String getAddChild(){
-        return "admin/addChild";
     }
 
     @GetMapping("/add/user")
@@ -50,6 +35,11 @@ public class AdminController {
     @GetMapping("/add/employee")
     public String getAddEmp(){
         return "admin/addEmp";
+    }
+
+    @GetMapping(value = "/add/packages")
+    public String getAddPackages(){
+        return "admin/addPackages";
     }
 
     @GetMapping("/attendance")

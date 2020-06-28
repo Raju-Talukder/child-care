@@ -2,8 +2,10 @@ package com.child.controller;
 
 import com.child.dto.AccountCreateDto;
 import com.child.dto.CodeVerifyDto;
+import com.child.dto.ContactInfoDto;
 import com.child.model.Account;
 import com.child.service.account.AccountService;
+import com.child.service.contactInfo.ContactInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,8 @@ public class ApplicationController {
 
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private ContactInfoService contactInfoService;
 
     @GetMapping("/login")
     public String login(Model model, HttpServletRequest request) {
@@ -61,7 +65,8 @@ public class ApplicationController {
     }
 
     @GetMapping("/contact")
-    public String contact(){
+    public String contact(Model model, ContactInfoDto contactInfoDto){
+        model.addAttribute("contactInfoDto",this.contactInfoService.findAll());
         return "home/contact";
     }
 
@@ -73,5 +78,10 @@ public class ApplicationController {
     @GetMapping("/gallery")
     public String gallery(){
         return "home/gallery";
+    }
+
+    @GetMapping("/packages")
+    public String packages(){
+        return "home/packages";
     }
 }

@@ -13,7 +13,7 @@ public class AccountCreateDto {
     private String password;
     private String repeatPassword;
     private String city;
-    private String state;
+    private String address;
     private String zip;
 
     public Long getId() {
@@ -44,6 +44,30 @@ public class AccountCreateDto {
         return repeatPassword;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
     public void setRepeatPassword(String repeatPassword) {
         this.repeatPassword = repeatPassword;
     }
@@ -62,29 +86,5 @@ public class AccountCreateDto {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getZip() {
-        return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
     }
 }

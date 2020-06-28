@@ -17,6 +17,7 @@ public class VerifyAccount {
     private String token;
     private LocalDateTime createDate;
     private LocalDateTime expireDate;
+
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id")
     private Account account;

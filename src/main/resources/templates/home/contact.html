@@ -63,12 +63,16 @@
                 <div class="col-lg-4 ml-auto">
                     <div class="bg-white p-3 p-md-5">
                         <h3 class="text-black mb-4">Contact Info</h3>
-                        <ul class="list-unstyled footer-link">
+                        <ul class="list-unstyled footer-link" th:each="contactInfoDto : ${contactInfoDto}">
                             <li class="d-block mb-3">
                                 <span class="d-block text-black">Address:</span>
-                                <span>Shukrabad, Dhaka, Bangladesh</span></li>
-                            <li class="d-block mb-3"><span class="d-block text-black">Phone:</span><span>+8801751076441</span></li>
-                            <li class="d-block mb-3"><span class="d-block text-black">Email:</span><span>childcare@gmail.com</span></li>
+                                <span th:text="${contactInfoDto.address}"></span></li>
+                            <li class="d-block mb-3"><span class="d-block text-black">Phone:</span>
+                                <span th:text="${contactInfoDto.phone}"></span>
+                            </li>
+                            <li class="d-block mb-3"><span class="d-block text-black">Email:</span>
+                                <span th:text="${contactInfoDto.email}"></span>
+                            </li>
                         </ul>
                     </div>
                 </div>

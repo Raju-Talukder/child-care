@@ -13,9 +13,6 @@ public class AccountUpdateDto {
     @ValidPassword
     private String password;
     private String repeatPassword;
-    private String city;
-    private String state;
-    private String zip;
 
     public Long getId() {
         return id;
@@ -39,30 +36,6 @@ public class AccountUpdateDto {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getZip() {
-        return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
     }
 
     public String getEmail() {

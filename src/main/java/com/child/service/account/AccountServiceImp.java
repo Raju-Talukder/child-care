@@ -1,18 +1,21 @@
 package com.child.service.account;
 
 import com.child.dao.account.AccountDao;
+import com.child.dao.address.AddressDao;
 import com.child.dao.verifyAccount.VerifyAccountDao;
 import com.child.dto.AccountCreateDto;
 import com.child.dto.CodeVerifyDto;
 import com.child.mail.Mail;
 import com.child.mail.MailService;
 import com.child.model.Account;
+import com.child.model.Address;
 import com.child.model.Role;
 import com.child.model.VerifyAccount;
+import com.child.service.address.AddressService;
 import com.child.service.role.RoleService;
 import com.child.utils.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -31,7 +34,9 @@ public class AccountServiceImp implements AccountService{
     @Autowired
     private VerifyAccountDao verifyAccountDao;
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private AddressDao addressDao;
+//    @Autowired
+//    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public Account createMember(AccountCreateDto accountDto) throws Exception {
@@ -40,18 +45,22 @@ public class AccountServiceImp implements AccountService{
         String email = accountDto.getEmail();
         String password = accountDto.getPassword();
         String city = accountDto.getCity();
-        String state = accountDto.getState();
+        String address = accountDto.getAddress();
         String zip = accountDto.getZip();
 
         Account account = new Account();
         account.setFirstName(firstName);
         account.setLastName(lastName);
         account.setEmail(email);
-        account.setPassword(passwordEncoder.encode(password));
-        account.setCity(city);
-        account.setState(state);
-        account.setZip(zip);
+        account.setPassword(password);
+//        passwordEncoder.encode(password)
         account.setActive(false);
+
+        Address add = new Address();
+        add.setAddress(address);
+        add.setCity(city);
+        add.setZip(zip);
+        addressDao.create(add);
 
         if(roleService.findById(2l).isPresent()) {
             Role role = roleService.findById(2l).get();
