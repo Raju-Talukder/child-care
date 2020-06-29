@@ -37,11 +37,6 @@ public class AdminController {
         return "admin/addEmp";
     }
 
-    @GetMapping(value = "/add/packages")
-    public String getAddPackages(){
-        return "admin/addPackages";
-    }
-
     @GetMapping("/attendance")
     public String getAttendance(){
         return "admin/attendance";

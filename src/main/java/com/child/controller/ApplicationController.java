@@ -1,11 +1,11 @@
 package com.child.controller;
 
-import com.child.dto.AccountCreateDto;
-import com.child.dto.CodeVerifyDto;
-import com.child.dto.ContactInfoDto;
+import com.child.dto.*;
 import com.child.model.Account;
 import com.child.service.account.AccountService;
 import com.child.service.contactInfo.ContactInfoService;
+import com.child.service.packages.PackagesService;
+import com.child.service.team.TeamMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +24,10 @@ public class ApplicationController {
     private AccountService accountService;
     @Autowired
     private ContactInfoService contactInfoService;
+    @Autowired
+    private PackagesService packagesService;
+    @Autowired
+    private TeamMemberService teamMemberService;
 
     @GetMapping("/login")
     public String login(Model model, HttpServletRequest request) {
@@ -60,18 +64,22 @@ public class ApplicationController {
     }
 
     @GetMapping("/")
-    public String home(Model model){
+    public String home(Model model,PackagesDto packagesDto){
+        model.addAttribute("packagesDto",this.packagesService.findAll());
         return "home/index";
     }
 
     @GetMapping("/contact")
-    public String contact(Model model, ContactInfoDto contactInfoDto){
+    public String contact(Model model, ContactInfoDto contactInfoDto, MessageDto messageDto){
+        model.addAttribute("messageDto",messageDto);
         model.addAttribute("contactInfoDto",this.contactInfoService.findAll());
         return "home/contact";
     }
 
     @GetMapping("/about")
-    public String about(){
+    public String about(Model model,PackagesDto packagesDto,TeamMemberDto teamMemberDto){
+        model.addAttribute("teamMemberDto",this.teamMemberService.findAll());
+        model.addAttribute("packagesDto",this.packagesService.findAll());
         return "home/about";
     }
 
@@ -81,7 +89,8 @@ public class ApplicationController {
     }
 
     @GetMapping("/packages")
-    public String packages(){
+    public String packages(Model model,PackagesDto packagesDto){
+        model.addAttribute("packagesDto",this.packagesService.findAll());
         return "home/packages";
     }
 }

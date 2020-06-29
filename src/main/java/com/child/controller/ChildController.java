@@ -40,7 +40,7 @@ public class ChildController {
         model.addAttribute("childDto",childDto);
         Child child = childService.createChild(childDto);
         childDto.setId(child.getId());
-        return "redirect:admin/addChild";
+        return "redirect:/admin/child/add";
     }
 
     @GetMapping("/delete/{id}")

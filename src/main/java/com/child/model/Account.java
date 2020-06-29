@@ -128,4 +128,18 @@ public class Account implements Serializable {
         roles.add(role);
         return roles;
     }
+
+    public Set<Address> addAddress(Address add){
+        if (address==null)
+            address=new HashSet<Address>();
+        address.add(add);
+        return address;
+    }
+
+    public Set<Child> addChild(Child childs){
+        if (child==null)
+            child=new HashSet<Child>();
+        child.add(childs);
+        return child;
+    }
 }

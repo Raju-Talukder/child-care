@@ -16,10 +16,12 @@ import com.child.service.role.RoleService;
 import com.child.utils.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -35,8 +37,8 @@ public class AccountServiceImp implements AccountService{
     private VerifyAccountDao verifyAccountDao;
     @Autowired
     private AddressDao addressDao;
-//    @Autowired
-//    private BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public Account createMember(AccountCreateDto accountDto) throws Exception {
@@ -52,8 +54,7 @@ public class AccountServiceImp implements AccountService{
         account.setFirstName(firstName);
         account.setLastName(lastName);
         account.setEmail(email);
-        account.setPassword(password);
-//        passwordEncoder.encode(password)
+        account.setPassword(passwordEncoder.encode(password));
         account.setActive(false);
 
         Address add = new Address();
@@ -61,6 +62,7 @@ public class AccountServiceImp implements AccountService{
         add.setCity(city);
         add.setZip(zip);
         addressDao.create(add);
+        account.addAddress(add);
 
         if(roleService.findById(2l).isPresent()) {
             Role role = roleService.findById(2l).get();

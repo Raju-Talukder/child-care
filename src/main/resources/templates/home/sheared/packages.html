@@ -1,0 +1,20 @@
+<div class="site-section bg-info" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container" >
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <span class="text-cursive h5 text-red d-block">Packages You Like</span>
+                <h2 class="text-white">Our Packages</h2>
+            </div>
+        </div>
+        <div class="row align-items-stretch" >
+            <div class="col-lg-4 col-md-6 mb-5" th:each="packagesDto : ${packagesDto}">
+                <div class="package text-center bg-white">
+                    <span class="img-wrap"><img src="/home/images/flaticon/svg/001-jigsaw.svg" alt="Image" class="img-fluid"></span>
+                    <h3 class="text-teal" th:text="${packagesDto.tittle}"></h3>
+                    <p th:text="${packagesDto.description}"></p>
+                    <p><a href="#" class="btn btn-primary btn-custom-1 mt-4">Learn More</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

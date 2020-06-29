@@ -4,7 +4,7 @@
       layout:decorator="home/sheared/homeLayout">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>Contact</title>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 <div layout:fragment="content">
@@ -32,25 +32,29 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 mb-5" >
-                    <form action="#" method="post">
+                    <form th:action="@{/contact}" th:object="${messageDto}" method="post" >
                         <div class="form-group row">
                             <div class="col-md-6 mb-4 mb-lg-0">
-                                <input type="text" class="form-control" placeholder="First name">
+                                <input type="text" th:field="*{fname}" class="form-control" placeholder="First name">
+                                <span th:each="error : ${#fields.errors('fname')}" th:text="${error}"></span>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="First name">
+                                <input type="text" th:field="*{lname}" class="form-control" placeholder="First name">
+                                <span th:each="error : ${#fields.errors('lname')}" th:text="${error}"></span>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Email address">
+                                <input type="text" th:field="*{email}" class="form-control" placeholder="Email address">
+                                <span th:each="error : ${#fields.errors('email')}" th:text="${error}"></span>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <textarea name="" id="" class="form-control" placeholder="Write your message." cols="30" rows="10"></textarea>
+                                <textarea name="" id="" th:field="*{message}" class="form-control" placeholder="Write your message." cols="30" rows="10"></textarea>
+                                <span th:each="error : ${#fields.errors('message')}" th:text="${error}"></span>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -63,6 +67,7 @@
                 <div class="col-lg-4 ml-auto">
                     <div class="bg-white p-3 p-md-5">
                         <h3 class="text-black mb-4">Contact Info</h3>
+                        <hr>
                         <ul class="list-unstyled footer-link" th:each="contactInfoDto : ${contactInfoDto}">
                             <li class="d-block mb-3">
                                 <span class="d-block text-black">Address:</span>
