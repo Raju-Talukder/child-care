@@ -25,8 +25,9 @@ public class ContactInfoController {
     }
 
     @PostMapping(value = "/add/contact")
-    public String AddContact(@Valid ContactInfoDto contactInfoDto){
+    public String AddContact(@Valid ContactInfoDto contactInfoDto,Model model){
         contactInfoService.create(contactInfoDto);
+        model.addAttribute("message");
         return "redirect:/admin/add/contact";
     }
 }
