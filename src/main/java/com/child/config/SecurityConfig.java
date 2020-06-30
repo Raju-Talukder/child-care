@@ -19,6 +19,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
+    @Autowired
+    private LoginSuccessHandler successHandler;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserDetailsService).passwordEncoder(encoder());
@@ -31,9 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
-                .authorizeRequests()
+        http.authorizeRequests()
                 .antMatchers("/admin/","/admin/add/contact","/admin/list/employee",
                         "/admin/child/list","/admin/list/user","/admin/child/request",
                         "admin/request/user","/admin/child/add","/admin/add/user",
@@ -44,10 +45,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/","/contact","/about","/packages","/gallery",
                         "/sign-up/**", "/verify-code/**","/login/**").permitAll()
                 .anyRequest().authenticated()
-                .and()
-                .formLogin()
+                .and().csrf().disable().formLogin()
                .loginPage("/login")
-                .defaultSuccessUrl("/").and().logout();
+                .failureUrl("/login?error=true")
+                .successHandler(successHandler)
+                .and().logout();
     }
 
     @Bean
