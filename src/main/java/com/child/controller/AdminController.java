@@ -17,21 +17,6 @@ public class AdminController {
         return "admin/empList";
     }
 
-    @GetMapping("/list/user")
-    public String getUserList(){
-        return "admin/userList";
-    }
-
-    @GetMapping("/request/user")
-    public String getUserAccountRequest(){
-        return "admin/userAccountRequest";
-    }
-
-    @GetMapping("/add/user")
-    public String getAddUser(){
-        return "admin/addUser";
-    }
-
     @GetMapping("/add/employee")
     public String getAddEmp(){
         return "admin/addEmp";

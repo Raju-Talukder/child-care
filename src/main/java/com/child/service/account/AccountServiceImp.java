@@ -4,6 +4,7 @@ import com.child.dao.account.AccountDao;
 import com.child.dao.address.AddressDao;
 import com.child.dao.verifyAccount.VerifyAccountDao;
 import com.child.dto.AccountCreateDto;
+import com.child.dto.AccountUpdateDto;
 import com.child.dto.CodeVerifyDto;
 import com.child.mail.Mail;
 import com.child.mail.MailService;
@@ -93,8 +94,34 @@ public class AccountServiceImp implements AccountService{
     }
 
     @Override
-    public Account createAdmin(AccountCreateDto accountDto) {
-        return null;
+    public Account createUserByAdmin(AccountCreateDto accountDto) {
+        String firstName = accountDto.getFirstName();
+        String lastName = accountDto.getLastName();
+        String email = accountDto.getEmail();
+        String password = accountDto.getPassword();
+        String city = accountDto.getCity();
+        String address = accountDto.getAddress();
+        String zip = accountDto.getZip();
+
+        Account account = new Account();
+        account.setFirstName(firstName);
+        account.setLastName(lastName);
+        account.setEmail(email);
+        account.setPassword(passwordEncoder.encode(password));
+        account.setActive(false);
+
+        Address add = new Address();
+        add.setAddress(address);
+        add.setCity(city);
+        add.setZip(zip);
+        addressDao.create(add);
+        account.addAddress(add);
+
+        if(roleService.findById(2l).isPresent()) {
+            Role role = roleService.findById(2l).get();
+            account.addRole(role);
+        }
+        return accountDao.create(account);
     }
 
     @Override
@@ -114,5 +141,23 @@ public class AccountServiceImp implements AccountService{
         Account account = verifyAccount.getAccount();
         account.setActive(true);
         accountDao.update(account);
+    }
+
+    @Override
+    public List<Account> findAll() {
+        return accountDao.findAll();
+    }
+
+    @Override
+    public Account update(AccountUpdateDto accountUpdateDto) {
+        return null;
+    }
+
+    @Override
+    public void delete(Long id) {
+        Account account = accountDao.findById(id).get();
+        accountDao.delete(account);
+        Address address = addressDao.findById(id).get();
+        addressDao.delete(address);
     }
 }
