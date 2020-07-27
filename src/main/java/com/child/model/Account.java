@@ -42,6 +42,10 @@ public class Account implements Serializable {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "account",cascade = CascadeType.ALL)
     private Set<VerifyAccount> verifyAccounts;
 
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "account",cascade = CascadeType.ALL)
+    private Set<Photo> photos;
+
     public Long getId() {
         return id;
     }
@@ -120,6 +124,14 @@ public class Account implements Serializable {
 
     public void setChild(Set<Child> child) {
         this.child = child;
+    }
+
+    public Set<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(Set<Photo> photos) {
+        this.photos = photos;
     }
 
     public Set<Role> addRole(Role role){

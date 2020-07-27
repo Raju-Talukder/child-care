@@ -5,6 +5,7 @@ import com.child.model.Account;
 import com.child.service.account.AccountService;
 import com.child.service.contactInfo.ContactInfoService;
 import com.child.service.packages.PackagesService;
+import com.child.service.photo.PhotoService;
 import com.child.service.team.TeamMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,8 @@ public class ApplicationController {
     private PackagesService packagesService;
     @Autowired
     private TeamMemberService teamMemberService;
+    @Autowired
+    private PhotoService photoService;
 
     @GetMapping("/login")
     public String login(Model model, HttpServletRequest request) {
@@ -66,6 +69,7 @@ public class ApplicationController {
     @GetMapping("/")
     public String home(Model model,PackagesDto packagesDto){
         model.addAttribute("packagesDto",this.packagesService.findAll());
+        model.addAttribute("photo",this.photoService.findByPath("Home"));
         return "home/index";
     }
 
@@ -80,6 +84,7 @@ public class ApplicationController {
     public String about(Model model,PackagesDto packagesDto,TeamMemberDto teamMemberDto){
         model.addAttribute("teamMemberDto",this.teamMemberService.findAll());
         model.addAttribute("packagesDto",this.packagesService.findAll());
+        model.addAttribute("photo",this.photoService.findByPath("About"));
         return "home/about";
     }
 

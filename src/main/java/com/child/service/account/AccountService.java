@@ -4,9 +4,11 @@ import com.child.dto.AccountCreateDto;
 import com.child.dto.AccountUpdateDto;
 import com.child.dto.CodeVerifyDto;
 import com.child.model.Account;
+import com.child.model.Role;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface AccountService {
     public Account createMember(AccountCreateDto accountDto) throws Exception;
@@ -16,6 +18,10 @@ public interface AccountService {
     public void verifyCode(CodeVerifyDto codeVerifyDto);
 
     Optional<Account> findByEmail(String email);
+
+//    public List<Account> findAllByRoles(Set<Role> roles);
+//
+//    public List<Account> findAccountsByRoles(Set<Role> roles);
 
     Optional<Account> findById(Long id);
 

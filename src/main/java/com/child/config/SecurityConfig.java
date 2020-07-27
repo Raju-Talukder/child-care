@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/admin/add/team","/admin/attendance","/admin/assign-food").hasAuthority("ADMIN")
                 .antMatchers("/user/","/user/child-add","/user/child-profile",
                         "/user/daily-report").hasAuthority("USER")
-                .antMatchers("/","/contact","/about","/packages","/gallery",
+                .antMatchers("/","/build/**","/dist/**","/docs/**","/home/**","/login/**","/plugins/**","/contact","/about","/packages","/gallery",
                         "/sign-up/**", "/verify-code/**","/login/**").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable().formLogin()

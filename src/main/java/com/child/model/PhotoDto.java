@@ -1,18 +1,9 @@
 package com.child.model;
 
-import javax.persistence.*;
-
-@Entity
-public class Photo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PhotoDto {
     private Long id;
     private String name;
     private String path;
-
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_id")
-    private Account account;
 
     public Long getId() {
         return id;

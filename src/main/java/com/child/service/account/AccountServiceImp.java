@@ -21,10 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class AccountServiceImp implements AccountService{
@@ -43,25 +40,17 @@ public class AccountServiceImp implements AccountService{
 
     @Override
     public Account createMember(AccountCreateDto accountDto) throws Exception {
-        String firstName = accountDto.getFirstName();
-        String lastName = accountDto.getLastName();
-        String email = accountDto.getEmail();
-        String password = accountDto.getPassword();
-        String city = accountDto.getCity();
-        String address = accountDto.getAddress();
-        String zip = accountDto.getZip();
-
         Account account = new Account();
-        account.setFirstName(firstName);
-        account.setLastName(lastName);
-        account.setEmail(email);
-        account.setPassword(passwordEncoder.encode(password));
+        account.setFirstName(accountDto.getFirstName());
+        account.setLastName(accountDto.getLastName());
+        account.setEmail(accountDto.getEmail());
+        account.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         account.setActive(false);
 
         Address add = new Address();
-        add.setAddress(address);
-        add.setCity(city);
-        add.setZip(zip);
+        add.setAddress(accountDto.getAddress());
+        add.setCity(accountDto.getCity());
+        add.setZip(accountDto.getZip());
         addressDao.create(add);
         account.addAddress(add);
 
@@ -95,25 +84,17 @@ public class AccountServiceImp implements AccountService{
 
     @Override
     public Account createUserByAdmin(AccountCreateDto accountDto) {
-        String firstName = accountDto.getFirstName();
-        String lastName = accountDto.getLastName();
-        String email = accountDto.getEmail();
-        String password = accountDto.getPassword();
-        String city = accountDto.getCity();
-        String address = accountDto.getAddress();
-        String zip = accountDto.getZip();
-
         Account account = new Account();
-        account.setFirstName(firstName);
-        account.setLastName(lastName);
-        account.setEmail(email);
-        account.setPassword(passwordEncoder.encode(password));
+        account.setFirstName(accountDto.getFirstName());
+        account.setLastName(accountDto.getLastName());
+        account.setEmail(accountDto.getEmail());
+        account.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         account.setActive(false);
 
         Address add = new Address();
-        add.setAddress(address);
-        add.setCity(city);
-        add.setZip(zip);
+        add.setAddress(accountDto.getAddress());
+        add.setCity(accountDto.getCity());
+        add.setZip(accountDto.getZip());
         addressDao.create(add);
         account.addAddress(add);
 
@@ -147,6 +128,16 @@ public class AccountServiceImp implements AccountService{
     public List<Account> findAll() {
         return accountDao.findAll();
     }
+
+//    @Override
+//    public List<Account> findAllByRoles(Set<Role> roles) {
+//        return accountDao.findAllByRoles(roles);
+//    }
+//
+//    @Override
+//    public List<Account> findAccountsByRoles(Set<Role> roles) {
+//        return accountDao.findAccountsByRoles(roles);
+//    }
 
     @Override
     public Account update(AccountUpdateDto accountUpdateDto) {
