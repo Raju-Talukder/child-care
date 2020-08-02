@@ -41,7 +41,6 @@ public class ApplicationController {
             return "login";
         }
         return "redirect:/";
-
     }
 
     @GetMapping("/sign-up")
