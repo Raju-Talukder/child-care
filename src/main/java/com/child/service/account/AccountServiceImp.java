@@ -2,24 +2,29 @@ package com.child.service.account;
 
 import com.child.dao.account.AccountDao;
 import com.child.dao.address.AddressDao;
+import com.child.dao.photo.PhotoDao;
 import com.child.dao.verifyAccount.VerifyAccountDao;
 import com.child.dto.AccountCreateDto;
 import com.child.dto.AccountUpdateDto;
 import com.child.dto.CodeVerifyDto;
+import com.child.dto.PhotoDto;
 import com.child.mail.Mail;
 import com.child.mail.MailService;
-import com.child.model.Account;
-import com.child.model.Address;
-import com.child.model.Role;
-import com.child.model.VerifyAccount;
-import com.child.service.address.AddressService;
+import com.child.model.*;
 import com.child.service.role.RoleService;
 import com.child.utils.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -37,6 +42,8 @@ public class AccountServiceImp implements AccountService{
     private AddressDao addressDao;
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private PhotoDao photoDao;
 
     @Override
     public Account createMember(AccountCreateDto accountDto) throws Exception {
@@ -129,19 +136,39 @@ public class AccountServiceImp implements AccountService{
         return accountDao.findAll();
     }
 
-//    @Override
-//    public List<Account> findAllByRoles(Set<Role> roles) {
-//        return accountDao.findAllByRoles(roles);
-//    }
-//
-//    @Override
-//    public List<Account> findAccountsByRoles(Set<Role> roles) {
-//        return accountDao.findAccountsByRoles(roles);
-//    }
-
     @Override
     public Account update(AccountUpdateDto accountUpdateDto) {
-        return null;
+        Account account = new Account();
+        account.setFirstName(accountUpdateDto.getFirstName());
+        account.setLastName(accountUpdateDto.getLastName());
+
+        Address add = new Address();
+        add.setAddress(accountUpdateDto.getAddress());
+        add.setCity(accountUpdateDto.getCity());
+        add.setZip(accountUpdateDto.getZip());
+        addressDao.update(add);
+
+        return accountDao.update(account);
+    }
+
+    @Override
+    public Photo savePhoto(MultipartFile image, PhotoDto photoDto) throws IOException {
+        String fileName = StringUtils.cleanPath(image.getOriginalFilename());
+        String uploadDir = "./photos/Profile";
+        Path uploadPath = Paths.get(uploadDir);
+        if (!Files.exists(uploadPath))
+            Files.createDirectories(uploadPath);
+        try{
+            InputStream inputStream = image.getInputStream();
+            Path filePath = uploadPath.resolve(fileName);
+            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        }catch (IOException e){
+            throw new IOException("Not found");
+        }
+        Photo photo = new Photo();
+        photo.setName(fileName);
+        photo.setPath("Profile");
+        return photoDao.create(photo);
     }
 
     @Override

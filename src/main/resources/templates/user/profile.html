@@ -11,37 +11,31 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <div class="card card-primary">
-                    <div class="card-header text-center">
-                        <h3 class="card-title">Add Child</h3>
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img src="/dist/img/user4-128x128.jpg" alt="User profile picture" class="profile-user-img img-fluid img-circle">
+                        </div>
+                        <h3 class="profile-username text-center">
+                            <span th:text="${profile.firstName}"></span>
+                            <span th:text="${profile.lastName}" ></span>
+                        </h3>
+                        <ul class="list-group list-group-unbordered mb-3" th:object="${address}">
+                            <li class="list-group-item">
+                                <b>Email:</b> <span th:text="${profile.email}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Address:</b> <span th:text="${address.address}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>City:</b> <span th:text="${address.city}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Zip:</b> <span th:text="${address.zip}"></span>
+                            </li>
+                        </ul>
+                        <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
                     </div>
-                    <form role="form">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label >Name</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Child Name">
-                            </div>
-                            <div class="form-group">
-                                <label>Date of Birth</label>
-                                <input type="date" class="form-control" id="exampleInputPassword1" placeholder="Birth date">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">Photo</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="">Upload</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Update</button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

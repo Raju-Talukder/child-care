@@ -4,12 +4,12 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
-@Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
+@Target({ElementType.TYPE, ElementType.FIELD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UpdateEmailValidator.class)
+@Constraint(validatedBy = StringValidator.class)
 @Documented
-public @interface ValidUpdateEmail {
-    String message() default "Invalid email.";
+public @interface ValidString {
+    String message() default "Invalid input.";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

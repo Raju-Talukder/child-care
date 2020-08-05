@@ -1,7 +1,7 @@
 package com.child.service.photo;
 
 import com.child.model.Photo;
-import com.child.model.PhotoDto;
+import com.child.dto.PhotoDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;

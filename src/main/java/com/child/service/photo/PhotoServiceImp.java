@@ -2,7 +2,7 @@ package com.child.service.photo;
 
 import com.child.dao.photo.PhotoDao;
 import com.child.model.Photo;
-import com.child.model.PhotoDto;
+import com.child.dto.PhotoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;

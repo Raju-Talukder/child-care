@@ -6,13 +6,13 @@
     </a>
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <div class="image" th:each="photo : ${photo}">
+                <img th:src="@{'/photos/Profile/'+${photo.name}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info" th:object="${profile}">
                 <a th:href="@{/admin/profile}" class="d-block">
-                    <span th:text="${profile.firstName}"></span>
-                    <span th:text="${profile.lastName}" ></span>
+                    <span th:text="${#authentication.name}"></span>
+<!--                    <span th:text="${#request.userPrincipal.principal.firstName}"></span>-->
                 </a>
             </div>
         </div>

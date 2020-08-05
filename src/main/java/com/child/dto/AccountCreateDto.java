@@ -5,15 +5,20 @@ import com.child.validator.account.*;
 @ValidRepeatPassword
 public class AccountCreateDto {
     private Long id;
+    @ValidString
     private String firstName;
+    @ValidString
     private String lastName;
     @ValidEmail
     private String email;
     @ValidPassword
     private String password;
     private String repeatPassword;
+    @ValidString
     private String city;
+    @ValidString
     private String address;
+    @ValidNumber
     private String zip;
 
     public Long getId() {

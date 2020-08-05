@@ -13,25 +13,28 @@
             <div class="col-md-6">
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile" th:object="${profile}">
-                        <div class="text-center">
-                            <img src="/dist/img/user4-128x128.jpg" alt="User profile picture" class="profile-user-img img-fluid img-circle">
+                        <div class="text-center" th:each="photo : ${photo}">
+                            <img th:src="@{'/photos/Profile/'+${photo.name}}" alt="User profile picture" class="profile-user-img img-fluid img-circle">
                         </div>
                         <h3 class="profile-username text-center">
                             <span th:text="${profile.firstName}"></span>
                             <span th:text="${profile.lastName}" ></span>
                         </h3>
-                        <ul class="list-group list-group-unbordered mb-3">
+                        <ul class="list-group list-group-unbordered mb-3" th:object="${address}">
                             <li class="list-group-item">
-                                <b>Followers</b> <a class="float-right">1,322</a>
+                                <b>Email:</b> <span th:text="${profile.email}"></span>
                             </li>
                             <li class="list-group-item">
-                                <b>Following</b> <a class="float-right">543</a>
+                                <b>Address:</b> <span th:text="${address.address}"></span>
                             </li>
                             <li class="list-group-item">
-                                <b>Friends</b> <a class="float-right">13,287</a>
+                                <b>City:</b> <span th:text="${address.city}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Zip:</b> <span th:text="${address.zip}"></span>
                             </li>
                         </ul>
-                        <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                        <a th:href="@{/admin/profile/edit}" class="btn btn-primary"><b>Edit Profile</b></a>
                     </div>
                 </div>
             </div>

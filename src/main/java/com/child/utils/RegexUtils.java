@@ -12,19 +12,26 @@ public class RegexUtils {
         return matcher.matches();
     }
 
-    public static boolean validUsername(String username) {
-        return username.matches("[A-Za-z0-9_]+");
+    public static boolean commonValidation(String data) {
+        String REGEX = "[A-Za-z]";
+        Pattern pattern = Pattern.compile(REGEX, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(data);
+        return matcher.matches();
+    }
+
+    public static boolean numberValidation(String data) {
+        String REGEX = "[0-9]";
+        Pattern pattern = Pattern.compile(REGEX);
+        Matcher matcher = pattern.matcher(data);
+        return matcher.matches();
     }
 
     public static boolean validatePassword(String passwordhere, Map<String, String> maps) {
-
         Pattern specailCharPatten = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
         Pattern UpperCasePatten = Pattern.compile("[A-Z ]");
         Pattern lowerCasePatten = Pattern.compile("[a-z ]");
         Pattern digitCasePatten = Pattern.compile("[0-9 ]");
-
         boolean flag = true;
-
         if (passwordhere.isEmpty()) {
             maps.put("errorMessage", "password not be empty");
             flag = false;
@@ -44,8 +51,6 @@ public class RegexUtils {
             maps.put("errorMessage", "password must have atleast one digit character");
             flag = false;
         }
-
         return flag;
-
     }
 }

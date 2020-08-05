@@ -3,6 +3,9 @@ package com.child.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,7 +19,13 @@ public class Account implements Serializable {
     private String firstName;
     private String lastName;
     @Column(unique = true)
+    @NotNull(message = "Should Not be empty")
+    @NotEmpty(message = "Should Not be empty")
+    @Email(message = "Invalid email Address")
     private String email;
+    @NotNull(message = "Should Not be empty")
+    @NotEmpty(message = "Should Not be empty")
+    @Email(message = "Invalid email Address")
     private String password;
     private boolean isActive;
 

@@ -30,7 +30,7 @@ public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
             return false;
         }else if(accountService.findByEmail(email).isPresent()) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate("Email already taken")
+            context.buildConstraintViolationWithTemplate("Email already Exists")
                     .addConstraintViolation();
             return false;
         }

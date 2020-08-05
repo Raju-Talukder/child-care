@@ -1,4 +1,4 @@
-package com.child.model;
+package com.child.dto;
 
 public class PhotoDto {
     private Long id;
