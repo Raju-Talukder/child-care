@@ -59,7 +59,8 @@ public class ApplicationController {
     }
 
     @GetMapping("/verify-code")
-    public String verifyCode() {
+    public String verifyCode(Model model,CodeVerifyDto codeVerifyDto) {
+        model.addAttribute("codeVerifyDto",codeVerifyDto);
         return "verify-code";
     }
 

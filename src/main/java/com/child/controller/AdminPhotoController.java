@@ -1,6 +1,6 @@
 package com.child.controller;
 
-import com.child.model.PhotoDto;
+import com.child.dto.PhotoDto;
 import com.child.service.photo.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

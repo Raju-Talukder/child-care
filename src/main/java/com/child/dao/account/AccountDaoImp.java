@@ -49,14 +49,4 @@ public class AccountDaoImp implements AccountDao{
     public Optional<Account> findByEmail(String email) {
         return accountRepository.findByEmail(email);
     }
-
-//    @Override
-//    public List<Account> findAccountsByRoles(Set<Role> roles) {
-//        return accountRepository.findAccountsByRoles(roles);
-//    }
-//
-//    @Override
-//    public List<Account> findAllByRoles(Set<Role> roles) {
-//        return accountRepository.findAllByRoles(roles);
-//    }
 }

@@ -9,10 +9,9 @@
             <div class="image">
                 <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
-            <div class="info" th:object="${profile}">
+            <div class="info">
                 <a th:href="@{/user/profile}" class="d-block">
-                    <span th:text="${profile.firstName}"></span>
-                    <span th:text="${profile.lastName}" ></span>
+                    <span th:text="${#authentication.name}"></span>
                 </a>
             </div>
         </div>

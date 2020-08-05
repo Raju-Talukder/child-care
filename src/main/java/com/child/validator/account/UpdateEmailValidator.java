@@ -20,20 +20,20 @@ public class UpdateEmailValidator implements ConstraintValidator<ValidUpdateEmai
 
     @Override
     public boolean isValid(Object obj, ConstraintValidatorContext context) {
-        if(obj instanceof AccountUpdateDto) {
-            AccountUpdateDto dto = (AccountUpdateDto) obj;
-            Long id = dto.getId();
-            String email = dto.getEmail();
-            if(accountService.findById(id).isPresent()) {
-                Account account = accountService.findById(id).get();
-                if(!account.getEmail().equals(email)) {
-                    context.disableDefaultConstraintViolation();
-                    context.buildConstraintViolationWithTemplate("Email already taken")
-                            .addPropertyNode("email").addConstraintViolation();
-                    return false;
-                }
-            }
-        }
+//        if(obj instanceof AccountUpdateDto) {
+//            AccountUpdateDto dto = (AccountUpdateDto) obj;
+//            Long id = dto.getId();
+//            String email = dto.getEmail();
+//            if(accountService.findById(id).isPresent()) {
+//                Account account = accountService.findById(id).get();
+//                if(!account.getEmail().equals(email)) {
+//                    context.disableDefaultConstraintViolation();
+//                    context.buildConstraintViolationWithTemplate("Email already taken")
+//                            .addPropertyNode("email").addConstraintViolation();
+//                    return false;
+//                }
+//            }
+//        }
         return true;
     }
 }

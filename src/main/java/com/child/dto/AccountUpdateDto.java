@@ -8,11 +8,9 @@ public class AccountUpdateDto {
     private Long id;
     private String firstName;
     private String lastName;
-    @ValidEmail
-    private String email;
-    @ValidPassword
-    private String password;
-    private String repeatPassword;
+    private String city;
+    private String address;
+    private String zip;
 
     public Long getId() {
         return id;
@@ -38,27 +36,27 @@ public class AccountUpdateDto {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCity() {
+        return city;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getPassword() {
-        return password;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getRepeatPassword() {
-        return repeatPassword;
+    public String getZip() {
+        return zip;
     }
 
-    public void setRepeatPassword(String repeatPassword) {
-        this.repeatPassword = repeatPassword;
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 }

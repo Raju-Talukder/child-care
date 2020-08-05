@@ -28,21 +28,21 @@ public class RepeatPasswordValidator implements ConstraintValidator<ValidRepeatP
                 return false;
             }
         }
-        if(value instanceof AccountUpdateDto) {
-            AccountUpdateDto dto = (AccountUpdateDto) value;
-            if (dto.getPassword().isEmpty()) {
-                context.buildConstraintViolationWithTemplate( "Password not be empty" )
-                        .addPropertyNode( "repeatPassword" )
-                        .addConstraintViolation();
-                return false;
-            }
-            if (!dto.getPassword().equals(dto.getRepeatPassword())) {
-                context.buildConstraintViolationWithTemplate( "Passwords don't match" )
-                        .addPropertyNode( "repeatPassword" )
-                        .addConstraintViolation();
-                return false;
-            }
-        }
+//        if(value instanceof AccountUpdateDto) {
+//            AccountUpdateDto dto = (AccountUpdateDto) value;
+//            if (dto.getPassword().isEmpty()) {
+//                context.buildConstraintViolationWithTemplate( "Password not be empty" )
+//                        .addPropertyNode( "repeatPassword" )
+//                        .addConstraintViolation();
+//                return false;
+//            }
+//            if (!dto.getPassword().equals(dto.getRepeatPassword())) {
+//                context.buildConstraintViolationWithTemplate( "Passwords don't match" )
+//                        .addPropertyNode( "repeatPassword" )
+//                        .addConstraintViolation();
+//                return false;
+//            }
+//        }
         return true;
     }
 }
