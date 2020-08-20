@@ -86,7 +86,7 @@ public class ApplicationController {
     public String contact(Model model, MessageDto messageDto){
         model.addAttribute("messageDto",messageDto);
         model.addAttribute("contactInfoDto",this.contactInfoService.findAll());
-//        model.addAttribute("photo",this.photoService.findByPath("Contact"));
+        model.addAttribute("photo",this.photoService.findByPath("Contact"));
         return "home/contact";
     }
 
@@ -94,20 +94,20 @@ public class ApplicationController {
     public String about(Model model){
         model.addAttribute("teamMemberDto",this.teamMemberService.findAll());
         model.addAttribute("packagesDto",this.packagesService.findAll());
-//        model.addAttribute("photo",this.photoService.findByPath("About"));
+        model.addAttribute("photo",this.photoService.findByPath("About"));
         return "home/about";
     }
 
     @GetMapping("/gallery")
     public String gallery(Model model){
-//        model.addAttribute("photo",this.photoService.findByPath("Gallery"));
+        model.addAttribute("photo",this.photoService.findByPath("Gallery"));
         return "home/gallery";
     }
 
     @GetMapping("/packages")
     public String packages(Model model){
         model.addAttribute("packagesDto",this.packagesService.findAll());
-//        model.addAttribute("photo",this.photoService.findByPath("Packages"));
+        model.addAttribute("photo",this.photoService.findByPath("Packages"));
         return "home/packages";
     }
 }
