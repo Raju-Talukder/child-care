@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      layout:decorator="user/sheared/userLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div layout:fragment="content">
+    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch" th:each="childProfile : ${childProfile}">
+        <div class="card bg-light">
+            <div class="card-body pt-0">
+                <div class="row">
+                    <div class="col-7">
+                        <b><h1 class="lead" th:text="${childProfile.name}"></h1></b>
+                        <p class="text-muted text-sm"><b>Date od Birth: </b> <span th:text="${childProfile.dateOfBirth}"></span> </p>
+                        <p class="text-muted text-sm"><b>Gender: </b> <span th:text="${childProfile.gender}"></span> </p>
+                    </div>
+                    <div class="col-5 text-center">
+                        <img th:src="@{'/photos/Child/Profile/'+${childProfile.photo}}" alt="" class="img-circle img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="text-right">
+                    <a href="#" class="btn btn-sm btn-primary">
+                        <i class="fas fa-user"></i> View Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

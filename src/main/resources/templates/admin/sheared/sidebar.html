@@ -1,0 +1,104 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4" xmlns:th="http://www.w3.org/1999/xhtml">
+    <a th:href="@{/admin/}" class="brand-link">
+        <img src="/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">Child Care</span>
+    </a>
+    <div class="sidebar">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image" >
+                <img th:src="@{'/photos/Profile/'+${#request.userPrincipal.principal.photo}}" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a th:href="@{/admin/profile}" class="d-block">
+                    <span th:text="${#request.userPrincipal.principal.firstName}"></span>
+                    <span th:text="${#request.userPrincipal.principal.lastName}"></span>
+                </a>
+            </div>
+        </div>
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item has-treeview menu-open">
+                    <a th:href="@{/admin/}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i><p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>Lists<i class="fas fa-angle-left right"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a th:href="@{/admin/list/employee}" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Employee List</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{/admin/child/list}" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Child List</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{/admin/list/user}" class="nav-link"><i class="far fa-circle nav-icon"></i><p>User List</p>s</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>Account Request<i class="fas fa-angle-left right"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a th:href="@{/admin/child/request}" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Child </p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{/admin/request/user}" class="nav-link"><i class="far fa-circle nav-icon"></i><p>User</p></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i><p>Add Member<i class="fas fa-angle-left right"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a th:href="@{/admin/add/user}" class="nav-link"><i class="far fa-circle nav-icon"></i><p>User</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{/admin/add/employee}" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Employee</p></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>Facilities<i class="fas fa-angle-left right"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a th:href="@{/admin/add/contact}" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Contact</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{/admin/add/packages}" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Packages</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{/admin/add/team}" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Team Member</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{/admin/add/photos}" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Add Photos</p></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a th:href="@{/admin/attendance}" class="nav-link"><i class="nav-icon fas fa-copy"></i><p>Attendance</p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a th:href="@{/admin/assign-food}" class="nav-link"><i class="nav-icon fas fa-copy"></i><p>Assign Food</p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a th:href="@{/logout}" class="nav-link"><i class="nav-icon fas fa-copy"></i><p>Logout</p></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>

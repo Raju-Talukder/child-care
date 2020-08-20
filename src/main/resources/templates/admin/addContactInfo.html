@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/sheared/adminLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Child List</title>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Add Contact</h3>
+                    </div>
+<!--                    <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>-->
+                    <span th:if="${message}"> insert successful</span>
+                    <form role="form" th:action="@{/admin/add/contact}" th:object="${contactInfoDto}" method="post">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="text" th:field="*{phone}" class="form-control"  placeholder="Phone Number">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" th:field="*{email}" class="form-control"  placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea name="address" th:field="*{address}" class="form-control" cols="20" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Add Contact</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

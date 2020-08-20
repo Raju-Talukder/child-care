@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Verify Code</title>
+	<link rel="stylesheet" href="/login/fonts/material-icon/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" href="/login/css/style.css">
+</head>
+<body>
+<div class="main">
+	<section class="sign-in">
+		<div class="container">
+			<div class="signin-content">
+				<div class="signin-image">
+					<figure><img src="/login/images/signin-image.jpg" alt="sing up image"></figure>
+					<a href="#" class="signup-image-link">Create an account</a>
+				</div>
+				<div class="signin-form">
+					<h2 class="form-title">Sign In</h2>
+					<form th:action="@{/verify-code}" th:object="${codeVerifyDto}" method="post" class="register-form" id="login-form">
+						<div class="form-group">
+							<label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+							<input type="text" name="your_name" id="your_name" th:field="*{token}" placeholder="Code verification"/>
+							<span th:each="error : ${#fields.errors('token')}" th:text="${error}"></span>
+						</div>
+						<div class="form-group form-button">
+							<button class="form-submit">Verify</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<script src="/login/vendor/jquery/jquery.min.js"></script>
+<script src="/login/js/main.js"></script>
+</body>
+</html>

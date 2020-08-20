@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      layout:decorator="home/sheared/homeLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Child Care</title>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div layout:fragment="content">
+    <div class="ftco-blocks-cover-1">
+        <div class="site-section-cover overlay">
+            <div class="container">
+                <div class="row align-items-center ">
+                    <div class="col-md-5 mt-5 pt-5">
+                        <span class="text-cursive h5 text-red">Welcome To Our Website</span>
+                        <h1 class="mb-3 font-weight-bold text-teal">Bring Fun Life To Your Kids</h1>
+                        <p>Amazing Playground for your kids</p>
+                    </div>
+                    <div class="col-md-6 ml-auto align-self-end" th:each="photo : ${photo}">
+                        <img th:src="@{'/photos/Home/'+${photo.name}}" alt="Image" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="/home/sheared/aboutUs"></div>
+    <div th:replace="/home/sheared/packages"></div>
+    <div th:replace="/home/sheared/testimonial"></div>
+</div>
+</body>
+</html>

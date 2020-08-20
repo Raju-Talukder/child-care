@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/sheared/adminLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Team Member</title>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header text-center">
+                        <h3 class="card-title">Add Child</h3>
+                    </div>
+                    <form role="form" th:action="@{/admin/add/team}" th:object="${teamMemberDto}" method="post" >
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label >Name</label>
+                                <input type="text" th:field="*{name}" class="form-control" id="exampleInputEmail1" placeholder="Child Name">
+                            </div>
+                            <div class="form-group">
+                                <label>Position</label>
+                                <input type="text" th:field="*{position}" class="form-control" id="exampleInputPassword1" placeholder="Position">
+                            </div>
+                            <div class="form-group">
+                                <label>About</label>
+                                <textarea class="form-control" th:field="*{about}" id="" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

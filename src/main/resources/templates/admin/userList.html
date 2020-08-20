@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/sheared/adminLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">User List</h3>
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body table-responsive p-0" style="height: 470px;">
+                    <table class="table table-head-fixed text-nowrap" th:switch="${accountCreateDto}" th:case="*">
+                        <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="accountCreateDto : ${accountCreateDto}">
+                            <td ><img th:src="@{'/photos/Profile/'+${accountCreateDto.photo}}" alt="" style="border: 1px solid #ddd;
+                                border-radius: 50px;padding: 5px;width: 50px;"></td>
+                            <td th:text="${accountCreateDto.firstName}"></td>
+                            <td th:text="${accountCreateDto.lastName}"></td>
+                            <td th:text="${accountCreateDto.email}"></td>
+                            <td>
+                                <a th:href="@{/admin/{id}/view (id = ${accountCreateDto.id})}"class="btn btn-info">
+                                    View
+                                </a>
+                                <a th:href="@{/admin/{id}/delete (id = ${accountCreateDto.id})}" class="btn btn-danger">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

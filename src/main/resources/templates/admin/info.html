@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/sheared/adminLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance</title>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div layout:fragment="content">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Profile</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card card-primary card-outline">
+                            <div class="card-body box-profile text-center">
+                                <div class="text-center">
+                                    <img class="profile-user-img img-fluid img-circle"
+                                         th:src="@{'/photos/Profile/'+${account.photo}}"
+                                         alt="User profile picture">
+                                </div>
+                                <h3 class="profile-username text-center">
+                                    <span th:text="${account.firstName}">  </span><span th:text="${account.lastName}"></span>
+                                </h3>
+                                <ul class="list-group list-group-unbordered mb-3">
+                                    <li class="list-group-item">
+                                        <b>Email</b> <p th:text="${account.email}"></p>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>City</b> <p th:text="${address.city}"></p>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Address</b> <p th:text="${address.address}"></p>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Zip</b> <p th:text="${address.zip}"></p>
+                                    </li>
+                                </ul>
+                                <a th:href="@{/admin/list/user}" class="btn btn-primary btn-block"><b>Back</b></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/sheared/adminLayout">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Profile</title>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header text-center">
+                        <h3 class="card-title"></h3>
+                    </div>
+                    <form th:action="@{/admin/profile/edit}" th:object="${accountUpdateDto}" enctype="multipart/form-data" method="post" class="register-form" id="register-form">
+                        <div class="card-body" >
+                            <div class="form-group">
+                                <input type="file" class="form-control" name="image" id="image" accept="image/png,image/jpeg,image/jpg">
+                                <p>
+                                    <img id="thumbnail" class="img-thumbnail" alt="Image Preview">
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{firstName}" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{lastName}" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{address}" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{city}" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" th:field="*{zip}" class="form-control">
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Update Profile</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#image').change(function () {
+                showImageThumbnail(this);
+            });
+        });
+
+        function showImageThumbnail(fileInput) {
+            file = fileInput.files[0];
+            reader = new FileReader();
+            reader.onload = function (e) {
+                $('#thumbnail').attr('src',e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    </script>
+</div>
+</body>
+</html>

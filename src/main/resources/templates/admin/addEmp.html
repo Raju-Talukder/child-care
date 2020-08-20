@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/sheared/adminLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employee</title>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header text-center">
+                        <h3 class="card-title">Add User</h3>
+                    </div>
+                    <form th:action="@{/admin/add/employee}" th:object="${accountCreateDto}" method="post" class="register-form" id="register-form">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <input type="text" class="form-control"  placeholder="First Name" th:field="*{firstName}"/>
+                                <span th:each="error : ${#fields.errors('firstName')}" th:text="${error}"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Last Name" th:field="*{lastName}"/>
+                                <span th:each="error : ${#fields.errors('lastName')}" th:text="${error}"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" th:field="*{email}" id="email" placeholder="Email"/>
+                                <span th:each="error : ${#fields.errors('email')}" th:text="${error}"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="pass" id="pass" th:field="*{password}" placeholder="Password"/>
+                                <span th:each="error : ${#fields.errors('password')}" th:text="${error}"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="re_pass" th:field="*{repeatPassword}" id="re_pass" placeholder="Repeat password"/>
+                                <span th:each="error : ${#fields.errors('repeatPassword')}" th:text="${error}"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="City" th:field="*{city}"/>
+                                <span th:each="error : ${#fields.errors('city')}" th:text="${error}"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="State" th:field="*{address}"/>
+                                <span th:each="error : ${#fields.errors('address')}" th:text="${error}"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Zip" th:field="*{zip}"/>
+                                <span th:each="error : ${#fields.errors('zip')}" th:text="${error}"></span>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

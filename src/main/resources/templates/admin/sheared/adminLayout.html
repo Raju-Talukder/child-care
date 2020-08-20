@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title layout:title-pattern="$CONTENT_TITLE - $DECORATOR_TITLE"></title>
+    <style th:replace="/admin/sheared/style"></style>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+    <div th:replace="/admin/sheared/header"></div>
+    <div th:replace="/admin/sheared/sidebar"></div>
+    <div class="content-wrapper">
+        <div layout:fragment="content">
+
+        </div>
+    </div>
+    <div th:replace="/admin/sheared/footer"></div>
+    <div th:fragment="script"></div>
+    <div th:replace="/admin/sheared/script"></div>
+</div>
+</body>
+</html>

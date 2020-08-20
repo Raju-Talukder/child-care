@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      layout:decorator="user/sheared/userLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img th:src="@{'/photos/Profile/'+${profile.photo}}" alt="User profile picture" class="profile-user-img img-fluid img-circle">
+                        </div>
+                        <h3 class="profile-username text-center">
+                            <span th:text="${profile.firstName}"></span>
+                            <span th:text="${profile.lastName}" ></span>
+                        </h3>
+                        <ul class="list-group list-group-unbordered mb-3" th:object="${address}">
+                            <li class="list-group-item">
+                                <b>Email:</b> <span th:text="${profile.email}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Address:</b> <span th:text="${address.address}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>City:</b> <span th:text="${address.city}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Zip:</b> <span th:text="${address.zip}"></span>
+                            </li>
+                        </ul>
+                        <a th:href="@{/user/profile/edit}" class="btn btn-primary"><b>Edit Profile</b></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

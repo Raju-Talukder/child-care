@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      layout:decorator="home/sheared/homeLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Packages</title>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div layout:fragment="content">
+    <div class="ftco-blocks-cover-1">
+        <div class="site-section-cover overlay" data-stellar-background-ratio="0.5" style="background-image: url('/home/images/hero_1.jpg')">
+        </div>
+    </div>
+    <div th:replace="/home/sheared/packages"></div>
+    <div th:replace="/home/sheared/testimonial"></div>
+</div>
+</body>
+</html>
